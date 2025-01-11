@@ -1,0 +1,67 @@
+#  spring:
+#    datasource:
+#      url: jdbc:postgresql://localhost:5432/jwt_security
+#   username: username
+#   password: password
+#   driver-class-name: org.postgresql.Driver
+#  jpa:
+#   hibernate:
+#     ddl-auto: create-drop
+#   show-sql: false
+#   properties:
+#     hibernate:
+#       format_sql: true
+#   database: postgresql
+#   database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+####
+
+spring:
+  application:
+    name: spring-data-demo-1
+  datasource:
+    password: 1
+    url: jdbc:postgresql://postgres:5432/postgres
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+    show-sql: true
+    defer-datasource-initialization: true
+    generate-ddl: true
+  sql:
+    init:
+      mode: always
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: collinkabwama@gmail.com
+    password: acksgdaotluztucy
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+#    org.springframework.security: DEBUG
+#    org.springframework.web: TRACE
+#    edu.miu.cs.cs544.controller: DEBUG
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days

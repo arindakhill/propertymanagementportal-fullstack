@@ -1,0 +1,33 @@
+# docker-compose for the spring and reactjs dockerfiles that run after a postgres image
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres-spring-data
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+      #POSTGRES_DB: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
+
+  spring:
+    build: ./backend
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+  reactjs:
+    build: ./frontend
+    ports:
+      - '5173:5173'
+    depends_on:
+      - spring
+
+volumes:
+  postgres:
